@@ -1,5 +1,59 @@
 # Custom-Compiler-JFlex
 
+In this project, you need to implement a compiler for a language defined here. The programming language you need to use is C or C++ (and the language defined by the corresponding tools).
+The project includes two phases, lexical analysis, and syntax analysis. In the following, we first define the language syntax and tokens. The definitions are given in BNF form.
+
+# Language Definitions
+
+## Syntax Definitions
+program ::= “{” “Program” program-name function-definitions statements “}”
+program-name ::= identifier
+function-definitions ::= (function-definition)*
+function-definition ::=
+“{” “Function” function-name arguments statements “return” return-arg “}”
+function-name ::= identifier
+arguments ::= (argument)*
+argument ::= identifier
+return-arg ::= identifier | ε
+statements ::= (statement)+
+statement ::= assignment-stmt | function-call | if-stmt | while-stmt
+assignment-stmt ::= “{” “=” identifier parameter “}”
+function-call ::= “{” function-name parameters “}” | “{” predefined-function parameters “}”
+predefined-function ::= “+” | “–” | “*” | “/” | “%” | “print”
+parameters ::= (parameter)*
+parameter ::= function-call | identifier | number | character-string | Boolean
+number ::= integer | float
+if-stmt ::= “{” “if” expression “then” statements “else” statements “}”
+while-stmt ::= “{” “while” expression “do” statements “}”
+expression ::= “{”comparison-operator parameter parameter “}” |
+“{”Boolean-operator expression expression “}” | Boolean
+comparison-operator ::= “==” | “>” | “<” | “>=” | “<=” | “!=”
+Boolean-operator ::= “or” | “and”
+To make the later references easier, let’s call this language the FP language (similar to functional language syntax, but has the procedural language characteristics).
+
+The FP language is case sensitive.
+
+## Here is an example program using the FP language.
+
+{
+  Program Sample
+  {
+    Function facto VAL
+    { 
+      if {< VAL 0 }
+      then {= retVal -1}
+      else {= retVal 1}
+      {
+        while {> VAL 0} do
+        {= retVal {* retVal VAL}}
+        {= VAL {- VAL 1}}
+      }
+    }
+    return retVal
+  }
+  {print {facto 999}}
+}
+
 1. Execute the following code to generate the Lexer java file from the lex file
 > java -jar jflex-1.6.1.jar fp.l
 
