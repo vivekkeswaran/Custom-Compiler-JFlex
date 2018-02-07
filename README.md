@@ -120,10 +120,15 @@ Node: 5, }
 
 
 The Contents of the Symbol table for the above FP language is:
+
 0:  => facto:14 => facto:2 => Sample:1
+
 1:  null
+
 2:  => retVal:2 => VAL:12 => VAL:11 => VAL:10 => retVal:10 => retVal:9 => VAL:8 => retVal:6 => retVal:5 => VAL:4 => VAL:2
+
 3:  null
+
 4:  null
 
 
